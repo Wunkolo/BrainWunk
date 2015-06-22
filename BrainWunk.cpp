@@ -28,7 +28,7 @@ std::string BrainWunk::Evaluate(const std::string& Expression)
 	{
 		switch( Expression[ProgramCounter] )
 		{
-		case '>':
+		case '>': // Increment data pointer
 		{
 			++DataPtr;
 			// Expand data array as necessary
@@ -40,34 +40,35 @@ std::string BrainWunk::Evaluate(const std::string& Expression)
 			}
 			break;
 		}
-		case '<':
+		case '<': // Decrement data pointer
 		{
 			if( DataPtr == 0 )
 			{
 				// Pointer Underflow
-				return "Error: Pointer Underflow";
+				return "";
 			}
 			--DataPtr;
 			break;
 		}
-		case '+':
+		case '+': // Increment byte at data pointer
 		{
 			++Data.at(DataPtr);
 			break;
 		}
-		case '-':
+		case '-': // Decrement byte at data pointer
 		{
 			--Data.at(DataPtr);
 			break;
 		}
-		case '.':
+		case '.': // Output byte at data pointer
 		{
 			Output += Data.at(DataPtr);
 			break;
 		}
-		case ',':
+		case ',': // Input byte at data pointer
 		{
 			// Get character
+			// Todo
 			break;
 		}
 		case '[':
