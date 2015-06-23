@@ -81,7 +81,9 @@ std::string BrainWunk::Evaluate(
 					// Stream not valid;
 					return "";
 				}
+				break;
 			}
+			// No data to read
 			break;
 		}
 		case '[':
@@ -129,6 +131,11 @@ std::string BrainWunk::Evaluate(
 		return "";
 	}
 	return Output;
+}
+
+void BrainWunk::PushInput(const std::string& Input)
+{
+	this->Input += Input;
 }
 
 void BrainWunk::Reset()

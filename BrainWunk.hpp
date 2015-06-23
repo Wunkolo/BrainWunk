@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -24,7 +23,7 @@ public:
 	// InputStream is called when Input buffer is depleted
 	std::string Evaluate(
 		const std::string& Expression,
-		std::istream* InputStream = &std::cin);
+		std::istream* InputStream = nullptr);
 
 	// A read-only copy of the context's memory.
 	const std::vector<uint8_t>& GetData() const
@@ -33,12 +32,9 @@ public:
 	}
 
 	// Append additional input data for the ',' command to read from
-	void PushInput(const std::string& Input)
-	{
-		this->Input += Input;
-	}
+	void PushInput(const std::string& Input);
 
-	// Reset's context into an empty state.
+	// Reset's context into an default state.
 	void Reset();
 
 private:
@@ -50,6 +46,6 @@ private:
 	// Subroutine return addresses
 	std::stack<size_t> Stack;
 
-	// Buffered input data depleated by , commands
+	// Buffered input data depleated by ',' commands
 	std::string Input;
 };
