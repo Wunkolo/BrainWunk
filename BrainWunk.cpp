@@ -5,10 +5,8 @@
 #include <stdexcept>
 
 BrainWunk::BrainWunk()
-	:
-	DataPtr(0)
 {
-	Data.resize(1, 0);
+	Reset();
 }
 
 BrainWunk::~BrainWunk()
@@ -33,9 +31,6 @@ std::string BrainWunk::Evaluate(
 		case '>': // Increment data pointer
 		{
 			++DataPtr;
-			// Expand data array as necessary
-
-			//Data.resize(std::max(DataPtr,Data.size()),0);
 			while( Data.size() < DataPtr + 1 )
 			{
 				Data.push_back(0);
@@ -134,4 +129,10 @@ std::string BrainWunk::Evaluate(
 		return "";
 	}
 	return Output;
+}
+
+void BrainWunk::Reset()
+{
+	DataPtr = 0;
+	Data.resize(1, 0);
 }
