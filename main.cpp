@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
 		std::cout << "Usage: Brainwunk -(options) (arguments)" << std::endl;
 		std::cout
 			<< "\tVerbose output: \t-v\n"
-			"\tEvaluate expression: -e \"(expression\"\n"
-			"\tDump final memory: -d\n"
+			"\tEvaluate expression: \t-e \"(expression)\"\n"
+			"\tDump final memory: \t-d\n"
 			<< std::endl;
 		return EXIT_FAILURE;
 	}
@@ -79,7 +79,5 @@ int main(int argc, char* argv[])
 			<< " byte(s)]:" << std::endl;
 		HexDump(Context.GetData());
 	}
-
-	std::cin.get();
 	return EXIT_SUCCESS;
 }

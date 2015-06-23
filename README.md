@@ -6,9 +6,9 @@ An interpreter for the "Brainfuck" language
 The interal buffer only takes up as much space as the Brainfuck program cares to attempt to address and will reallocate its self dynamically.
 
 
-`-v`                : Enables Verbose output
+`-v`                : Enables verbose output
 
-`-e "(expression)"` : Evalutes the brainfuck expression in parenthesis
+`-e "(expression)"` : Evalutes the brainfuck expression in quotes
 
 `-d`                : Outputs the final memory array as formatted ascii text
 
