@@ -17,7 +17,7 @@ BrainWunk::~BrainWunk()
 
 std::string BrainWunk::Evaluate(
 	const std::string& Expression,
-	int(*InputProc)(void))
+	std::istream* InputStream)
 {
 	if( !Expression.length() )
 	{
@@ -69,8 +69,24 @@ std::string BrainWunk::Evaluate(
 		}
 		case ',': // Input byte at data pointer
 		{
-			// Get character
-			// Todo
+			if( Input.size() )
+			{
+				Data.at(DataPtr) = Input.front();
+				Input.erase(0);
+				break;
+			}
+			if( InputStream )
+			{
+				if( (*InputStream) )
+				{
+					Data.at(DataPtr) = static_cast<uint8_t>((*InputStream).get());
+				}
+				else
+				{
+					// Stream not valid;
+					return "";
+				}
+			}
 			break;
 		}
 		case '[':
