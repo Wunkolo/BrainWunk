@@ -15,11 +15,30 @@ public:
 
 	// Evaluates an expression and returns all output
 	// Data array persists between expressions
-	std::string Evaluate(const std::string& Expression);
+	// InputProc is called when buffered input is depleted
+	std::string Evaluate(
+		const std::string& Expression,
+		int(*InputProc)(void) = getchar);
+
+	// Add additional input data for
+	void PushInput(const std::string& Input)
+	{
+		this->Input += Input;
+	}
+
+	const std::vector<uint8_t> GetData() const
+	{
+		return this->Data;
+	}
 private:
 
+	// Context Data
 	size_t DataPtr;
 	std::vector<uint8_t> Data;
+
 	// Subroutine "return addresses"
 	std::stack<size_t> Stack;
+
+	// Buffered input data depleated by , commands
+	std::string Input;
 };

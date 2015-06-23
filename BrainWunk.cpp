@@ -15,7 +15,9 @@ BrainWunk::~BrainWunk()
 {
 }
 
-std::string BrainWunk::Evaluate(const std::string& Expression)
+std::string BrainWunk::Evaluate(
+	const std::string& Expression,
+	int(*InputProc)(void))
 {
 	if( !Expression.length() )
 	{
