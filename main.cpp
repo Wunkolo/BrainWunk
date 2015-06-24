@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 			<< "\tVerbose output: \t-v\n"
 			"\tEvaluate expression: \t-e \"(expression)\"\n"
 			"\tDump final memory: \t-d\n"
+			"\tInteractive mode:  \t-i"
 			<< std::endl;
 		return EXIT_FAILURE;
 	}
@@ -49,8 +50,6 @@ int main(int argc, char* argv[])
 			Args[argv[i]] = nullptr;
 		}
 	}
-
-	// Evaluate an expression
 	if( Args.count("eval") && Args.at("eval") )
 	{
 		!Args.count("v")
@@ -58,28 +57,59 @@ int main(int argc, char* argv[])
 		Program = Args.at("eval");
 	}
 
-	if( !Program )
-	{
-		std::cout << "No program to evaluate" << std::endl;
-		return EXIT_FAILURE;
-	}
-
 	BrainWunk Context;
 
 	!Args.count("v")
 		|| (std::cout << std::string(64, '-') << std::endl);
 
-	try
+	if( Program )
 	{
-		std::cout << Context.Evaluate(Program, &std::cin) << std::endl;
-	}
-	catch( const char* e )
-	{
-		std::cout << " Error evaluating expression:" << e << std::endl;
+		try
+		{
+			std::cout << Context.Evaluate(Program, &std::cin) << std::endl;
+		}
+		catch( const char* e )
+		{
+			std::cout << " Error evaluating expression: " << e << std::endl;
+		}
 	}
 
 	!Args.count("v")
 		|| (std::cout << std::string(64, '-') << std::endl);
+
+	// Interactive mode
+	if( Args.count("i") )
+	{
+		std::string Line;
+		std::cout << ">[";
+		while( std::getline(std::cin, Line) )
+		{
+			if( Line == "quit"
+				|| Line == "q" )
+			{
+				break;
+			}
+			else if( Line == "reset"
+				|| Line == "r" )
+			{
+				Context.Reset();
+				continue;
+			}
+			try
+			{
+				std::string Output = Context.Evaluate(Line, &std::cin);
+				if( Output.length() ) // Only print when there is output
+				{
+					std::cout << '[' << Output << ']' << std::endl;
+				}
+			}
+			catch( const char* e )
+			{
+				std::cout << " Error evaluating expression: " << e << std::endl;
+			}
+			std::cout << ">[";
+		}
+	}
 
 	if( Args.count("d") )
 	{
