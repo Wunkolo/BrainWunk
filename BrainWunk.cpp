@@ -21,6 +21,10 @@ std::string BrainWunk::Evaluate(
 	{
 		return "";
 	}
+	while( !Stack.empty() )
+	{
+		Stack.pop();
+	}
 	const static std::string Commands = "><+-.,[]";
 	std::string Output;
 	size_t ProgramCounter = Expression.find_first_of(Commands);
@@ -132,10 +136,6 @@ std::string BrainWunk::Evaluate(
 	}
 	if( Stack.size() )
 	{
-		while( !Stack.empty() )
-		{
-			Stack.pop();
-		}
 		throw "Unmatched '[' operator";
 	}
 	return Output;
