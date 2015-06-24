@@ -41,7 +41,7 @@ std::string BrainWunk::Evaluate(
 		{
 			if( DataPtr == 0 )
 			{
-				throw "Pointer Underflow at index " + std::to_string(ProgramCounter);
+				throw "Pointer underflow";
 			}
 			--DataPtr;
 			break;
@@ -77,7 +77,7 @@ std::string BrainWunk::Evaluate(
 				}
 				else
 				{
-					throw "Error reading byte from Input stream";
+					throw "Invalid input stream";
 				}
 				break;
 			}
@@ -97,7 +97,7 @@ std::string BrainWunk::Evaluate(
 				ProgramCounter++;
 				if( ProgramCounter > Expression.length() )
 				{
-					throw "Expected a ]";
+					throw "Unmatched '[' operator";
 				}
 				if( Expression[ProgramCounter] == '[' )
 				{
@@ -107,8 +107,8 @@ std::string BrainWunk::Evaluate(
 				{
 					Balanace--;
 				}
-				Stack.pop();
 			}
+			Stack.pop();
 			break;
 		}
 		case ']':
@@ -117,7 +117,14 @@ std::string BrainWunk::Evaluate(
 			{
 				ProgramCounter = Stack.top() - 1;
 			}
-			Stack.pop();
+			if( Stack.size() )
+			{
+				Stack.pop();
+			}
+			else
+			{
+				throw "Unmatched ']' operator";
+			}
 			break;
 		}
 		}
@@ -125,7 +132,7 @@ std::string BrainWunk::Evaluate(
 	}
 	if( Stack.size() )
 	{
-		throw "Expected a ] at end of program";
+		throw "Unmatched '[' operator";
 	}
 	return Output;
 }
