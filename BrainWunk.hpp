@@ -23,7 +23,7 @@ public:
 	// InputStream is called when Input buffer is depleted
 	std::string Evaluate(
 		const std::string& Expression,
-		std::istream* InputStream = nullptr);
+		std::istream* InputStream = nullptr) throw(const char*);
 
 	// A read-only copy of the context's memory.
 	const std::vector<uint8_t>& GetData() const

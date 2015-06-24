@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 		if( argv[i][0] = '-' )
 		{
 			Args[argv[i] + 1] = nullptr;
-			if( (i + 1) < argc )
+			if( (i + 1) < static_cast<size_t>(argc) )
 			{
 				if( argv[i + 1][0] != '-' )
 				{
@@ -68,7 +68,16 @@ int main(int argc, char* argv[])
 
 	!Args.count("v")
 		|| (std::cout << std::string(64, '-') << std::endl);
-	std::cout << Context.Evaluate(Program, &std::cin) << std::endl;
+
+	try
+	{
+		std::cout << Context.Evaluate(Program, &std::cin) << std::endl;
+	}
+	catch( const char* e )
+	{
+		std::cout << "Error evaluating expression:" << e << std::endl;
+	}
+
 	!Args.count("v")
 		|| (std::cout << std::string(64, '-') << std::endl);
 

@@ -41,8 +41,7 @@ std::string BrainWunk::Evaluate(
 		{
 			if( DataPtr == 0 )
 			{
-				// Pointer Underflow
-				return "";
+				throw "Pointer Underflow";
 			}
 			--DataPtr;
 			break;
@@ -78,8 +77,8 @@ std::string BrainWunk::Evaluate(
 				}
 				else
 				{
-					// Stream not valid;
-					return "";
+					// Stream not valid
+					throw "Error reading from Input stream";
 				}
 				break;
 			}
@@ -100,7 +99,7 @@ std::string BrainWunk::Evaluate(
 				if( ProgramCounter > Expression.length() )
 				{
 					// Expected a ]
-					return "";
+					throw "Expected a ]";
 				}
 				if( Expression[ProgramCounter] == '[' )
 				{
@@ -128,7 +127,7 @@ std::string BrainWunk::Evaluate(
 	if( Stack.size() )
 	{
 		// Expected a ] at end of program
-		return "";
+		throw "Expected a ] at end of program";
 	}
 	return Output;
 }
