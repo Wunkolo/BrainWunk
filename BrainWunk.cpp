@@ -41,7 +41,7 @@ std::string BrainWunk::Evaluate(
 		{
 			if( DataPtr == 0 )
 			{
-				throw "Pointer Underflow";
+				throw "Pointer Underflow at index " + std::to_string(ProgramCounter);
 			}
 			--DataPtr;
 			break;
@@ -77,12 +77,11 @@ std::string BrainWunk::Evaluate(
 				}
 				else
 				{
-					// Stream not valid
-					throw "Error reading from Input stream";
+					throw "Error reading byte from Input stream";
 				}
 				break;
 			}
-			// No data to read
+			throw "Unable to input byte for ',' command at " + std::to_string(ProgramCounter);
 			break;
 		}
 		case '[':
@@ -98,7 +97,6 @@ std::string BrainWunk::Evaluate(
 				ProgramCounter++;
 				if( ProgramCounter > Expression.length() )
 				{
-					// Expected a ]
 					throw "Expected a ]";
 				}
 				if( Expression[ProgramCounter] == '[' )
@@ -126,7 +124,6 @@ std::string BrainWunk::Evaluate(
 	}
 	if( Stack.size() )
 	{
-		// Expected a ] at end of program
 		throw "Expected a ] at end of program";
 	}
 	return Output;
