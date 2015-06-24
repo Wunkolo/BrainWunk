@@ -132,6 +132,10 @@ std::string BrainWunk::Evaluate(
 	}
 	if( Stack.size() )
 	{
+		while( !Stack.empty() )
+		{
+			Stack.pop();
+		}
 		throw "Unmatched '[' operator";
 	}
 	return Output;
