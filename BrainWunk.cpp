@@ -19,7 +19,7 @@ std::string BrainWunk::Evaluate(
 {
 	if( !Expression.length() )
 	{
-		return "Nothing to evaluate";
+		return "";
 	}
 	const static std::string Commands = "><+-.,[]";
 	std::string Output;
@@ -140,5 +140,6 @@ void BrainWunk::PushInput(const std::string& Input)
 void BrainWunk::Reset()
 {
 	DataPtr = 0;
+	Data.clear();
 	Data.resize(1, 0);
 }
