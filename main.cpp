@@ -92,16 +92,21 @@ int main(int argc, char* argv[])
 			if( Line == "quit"
 				|| Line == "q" )
 			{
+				std::cout << "Quitting..." << std::endl;
 				break;
 			}
 			else if( Line == "reset"
 				|| Line == "r" )
 			{
 				Context.Reset();
+				std::cout << "Context reset" << std::endl;
 			}
 			else if( Line == "dump"
 				|| Line == "d" )
 			{
+				std::cout << "Hex dump ["
+					<< Context.GetData().size()
+					<< " byte(s)]:" << std::endl;
 				HexDump(Context.GetData());
 				std::cout << std::endl;
 			}
