@@ -9,9 +9,11 @@ void HexDump(const std::vector<uint8_t>& Data)
 {
 	std::cout << std::hex << std::uppercase << std::setfill('0');
 
-	for( uint8_t Byte : Data )
+	for( std::vector<uint8_t>::const_iterator it = Data.cbegin();
+		it != Data.cend();
+		it++ )
 	{
-		std::cout << std::setw(2) << +Byte << ':';
+		std::cout << std::setw(2) << +(*it) << (it + 1 == Data.end() ? ' ' : ':');
 	}
 }
 
