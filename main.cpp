@@ -3,6 +3,8 @@
 #include <unordered_map>
 #include "BrainWunk.hpp"
 
+#define PS1 "~> "
+
 void HexDump(const std::vector<uint8_t>& Data)
 {
 	std::cout << std::hex << std::uppercase << std::setfill('0');
@@ -81,7 +83,7 @@ int main(int argc, char* argv[])
 	if( Args.count("i") )
 	{
 		std::string Line;
-		std::cout << ">[";
+		std::cout << PS1;
 		while( std::getline(std::cin, Line) )
 		{
 			if( Line == "quit"
@@ -93,21 +95,29 @@ int main(int argc, char* argv[])
 				|| Line == "r" )
 			{
 				Context.Reset();
-				continue;
 			}
-			try
+			else if( Line == "dump"
+				|| Line == "d" )
 			{
-				std::string Output = Context.Evaluate(Line, &std::cin);
-				if( Output.length() ) // Only print when there is output
+				HexDump(Context.GetData());
+				std::cout << std::endl;
+			}
+			else
+			{
+				try
 				{
-					std::cout << '[' << Output << ']' << std::endl;
+					std::string Output = Context.Evaluate(Line, &std::cin);
+					if( Output.length() ) // Only print when there is output
+					{
+						std::cout << Output << std::endl;
+					}
+				}
+				catch( const char* e )
+				{
+					std::cout << " Error evaluating expression: " << e << std::endl;
 				}
 			}
-			catch( const char* e )
-			{
-				std::cout << " Error evaluating expression: " << e << std::endl;
-			}
-			std::cout << ">[";
+			std::cout << PS1;
 		}
 	}
 
