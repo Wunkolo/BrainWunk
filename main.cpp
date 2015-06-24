@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 	}
 	catch( const char* e )
 	{
-		std::cout << "Error evaluating expression:" << e << std::endl;
+		std::cout << " Error evaluating expression:" << e << std::endl;
 	}
 
 	!Args.count("v")
@@ -88,5 +88,6 @@ int main(int argc, char* argv[])
 			<< " byte(s)]:" << std::endl;
 		HexDump(Context.GetData());
 	}
+
 	return EXIT_SUCCESS;
 }

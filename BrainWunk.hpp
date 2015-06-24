@@ -4,6 +4,9 @@
 #include <vector>
 #include <stack>
 
+// Disable throw(const char*) warning
+#pragma warning(disable : 4290)
+
 /*	Describes a Brainfuck context
 	Expressions can be evaluated and data will
 	persist between expressions. Input data used
