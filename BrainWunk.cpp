@@ -107,6 +107,7 @@ std::string BrainWunk::Evaluate(
 				{
 					Balanace--;
 				}
+				Stack.pop();
 			}
 			break;
 		}
