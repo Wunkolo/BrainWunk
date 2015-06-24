@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
 	for( size_t i = 1; i < static_cast<size_t>(argc); i++ )
 	{
-		if( argv[i][0] = '-' )
+		if( argv[i][0] == '-' )
 		{
 			Args[argv[i] + 1] = nullptr;
 			if( (i + 1) < static_cast<size_t>(argc) )
