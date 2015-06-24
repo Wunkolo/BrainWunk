@@ -18,6 +18,7 @@ void HexDump(const std::vector<uint8_t>& Data)
 //-hoot honk -v -i "poop doot" -a -b -c f
 int main(int argc, char* argv[])
 {
+	std::cout << "BrainWunk:\n\t-Build Date: "__TIMESTAMP__ << std::endl;
 	if( argc == 1 )
 	{
 		std::cout << "Usage: Brainwunk -(options) (arguments)" << std::endl;
