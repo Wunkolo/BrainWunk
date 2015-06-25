@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	!Args.count("v") || (std::cout << "BrainWunk:\n\t-Build Date: "__DATE__" "__TIME__ << std::endl);
+	!Args.count("v") || (std::cout << "BrainWunk:\n\t-Build Date: " << __DATE__ << ' ' << __TIME__ << std::endl);
 	if( argc == 1 )
 	{
 		std::cout << "Usage: Brainwunk -(options) (arguments)" << std::endl;
