@@ -10,17 +10,30 @@ The interal buffer only takes up as much space as the Brainfuck program cares to
 
 `-e "(expression)"` : Evalutes the brainfuck expression in quotes
 
+`-f (filename)`     : Evaluate the brainfuck program file (overrides the -e expression)
+
+`-if (filename)`    : Sets the input stream buffer to read from the file. Bytes read from the `,` command will read from this file
+
 `-d`                : Outputs the final memory array as formatted ascii text
 
 `-i`                : Interactive mode:
 
 ![Interactive Mode](https://cloud.githubusercontent.com/assets/644247/8323507/3c014f82-19fa-11e5-98f3-36e61471cf48.gif)
-`quit` to exit
-`reset` or `r` to reset the interpretor into its default state.
-`dump` or `d` shows a hexadecimal dump of the current memory state
+
+`quit`|`q` to exit
+
+`reset`|`r` to reset the interpretor into its default state.
+
+`dump`|`d` shows a hexadecimal dump of the current memory state
 
 Example:
 
-```BrainWunk.exe -eval "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."```
+```
+BrainWunk -eval "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
+```
 
-will cause the program to output `Hello World!` along with a new line.
+will cause the program to output 
+````
+Hello World!
+
+```
