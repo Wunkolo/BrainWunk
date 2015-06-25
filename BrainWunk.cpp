@@ -15,7 +15,7 @@ BrainWunk::~BrainWunk()
 
 std::string BrainWunk::Evaluate(
 	const std::string& Expression,
-	std::istream* InputStream)
+	std::istream* InputStream) throw(const char*)
 {
 	if( !Expression.length() )
 	{
