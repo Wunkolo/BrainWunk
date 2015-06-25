@@ -1,6 +1,8 @@
 #BrainWunk
 An interpreter for the "Brainfuck" language
 
+![Demo](https://cloud.githubusercontent.com/assets/644247/8368058/6070948e-1b5a-11e5-862b-30af416ccff0.gif)
+
 ![Demo](https://cloud.githubusercontent.com/assets/644247/8301685/16446c08-1945-11e5-8322-1a5d156cf45d.gif)
 
 The interal buffer only takes up as much space as the Brainfuck program cares to attempt to address and will reallocate its self dynamically.
