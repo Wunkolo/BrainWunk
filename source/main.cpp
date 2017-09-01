@@ -3,11 +3,14 @@
 #include <iomanip>
 #include <unordered_map>
 #include <streambuf>
-#include "BrainWunk.hpp"
+#include <cstddef>
+#include <cstdint>
+
+#include <BrainWunk.hpp>
 
 #define PS1 "~> "
 
-void HexDump(const std::vector<uint8_t>& Data)
+void HexDump(const std::vector<std::uint8_t>& Data)
 {
 	std::cout << std::hex << std::uppercase << std::setfill('0');
 
@@ -24,12 +27,12 @@ int main(int argc, char* argv[])
 	// Parse arguments
 	std::unordered_map<std::string, const char*> Args;
 
-	for( size_t i = 1; i < static_cast<size_t>(argc); i++ )
+	for( std::size_t i = 1; i < static_cast<std::size_t>(argc); i++ )
 	{
 		if( argv[i][0] == '-' )
 		{
 			Args[argv[i] + 1] = nullptr;
-			if( (i + 1) < static_cast<size_t>(argc) )
+			if( (i + 1) < static_cast<std::size_t>(argc) )
 			{
 				if( argv[i + 1][0] != '-' )
 				{
@@ -49,6 +52,7 @@ int main(int argc, char* argv[])
 	{
 		std::cout << "Usage: Brainwunk -(options) (arguments)" << std::endl;
 		std::cout
+			<< "Build Date: " << __TIMESTAMP__"\n"
 			<< "\tVerbose output: \t-v\n"
 			"\tEvaluate expression: \t-e \"(expression)\"\n"
 			"\tEvaluate file: \t-f (filename)\n"

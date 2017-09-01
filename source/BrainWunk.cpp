@@ -1,4 +1,4 @@
-#include "BrainWunk.hpp"
+#include <BrainWunk.hpp>
 
 #include <iostream>
 #include <algorithm>
@@ -27,7 +27,7 @@ std::string BrainWunk::Evaluate(
 	}
 	const static std::string Commands = "><+-.,[]";
 	std::string Output;
-	size_t ProgramCounter = Expression.find_first_of(Commands);
+	std::size_t ProgramCounter = Expression.find_first_of(Commands);
 	while( ProgramCounter != std::string::npos )
 	{
 		switch( Expression[ProgramCounter] )
@@ -77,7 +77,7 @@ std::string BrainWunk::Evaluate(
 			{
 				if( (*InputStream) )
 				{
-					Data.at(DataPtr) = static_cast<uint8_t>((*InputStream).get());
+					Data.at(DataPtr) = static_cast<std::uint8_t>((*InputStream).get());
 				}
 				else
 				{
@@ -95,7 +95,7 @@ std::string BrainWunk::Evaluate(
 			{
 				break;
 			}
-			size_t Balanace = 1;
+			std::size_t Balanace = 1;
 			while( Balanace )
 			{
 				ProgramCounter++;
